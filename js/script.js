@@ -67,7 +67,13 @@ const sensors = [
     }
 ];
 
+var g_icons = {
+    switch: `<i class="fa-regular fa-lightbulb"></i>`,
+    counter: `<i class="fa-solid fa-people-group"></i>`,
+    temperature: `<i class="fa-solid fa-temperature-quarter"></i>`
+  };
 
+  
 sensors.forEach(sensor => {
     let sensorComponent;
     switch (sensor.type) {

@@ -8,7 +8,7 @@ function renderTemperatureSensor(data) {
     card.innerHTML = `
     <div class="sensor-content">
         <div class="header">
-            <h3>${data.name}</h3>
+            <h3>${g_icons.temperature +data.name}</h3>
             <span class="unit-toggle" onclick="toggleUnit('${data.name}')">[°F/°C]</span>
         </div>
         <span style="display:none;" id="unit-${data.name}">${currentUnit}</span>

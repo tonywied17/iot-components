@@ -95,6 +95,13 @@ body {
     width: 50%;
 }
 
+.fa-regular, .fa-solid {
+    font-size: 1rem !important;
+    opacity: 0.8;
+    margin-left: 0.33rem;
+    margin-right: 0.52rem;
+}
+
 .card {
     background-color: #333;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -146,10 +153,6 @@ body {
 .unit-toggle:hover {
     opacity: 0.8;
 }
-
-
-
-
 
 /* Specific card styles */
 .temperature-card {
