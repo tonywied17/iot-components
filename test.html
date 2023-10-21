@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensor Widget</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .sensor-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            width: 250px;
+            background-color: #fff;
+        }
+
+        .sensor-name {
+            background:rgba(0, 0, 0, 0.486);
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .unit-toggle {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+            position: absolute;
+            right: 10px;
+        }
+
+        .sensor-data-wrapper {
+            padding: 10px;
+        }
+
+        .sensor-data {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .sensor-data span {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .sensor-data span.label {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .sensor-gradient {
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(to right, blue 0%, red 100%);
+            border-radius: 5px;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        .sensor-gradient-mark {
+            width: 1px;
+            height: 10px;
+            background-color: #333;
+            position: absolute;
+        }
+
+        .sensor-gradient-mark.min {
+            background-color: rgb(0, 110, 255);
+            width: 4px;
+            height: 15px;
+        }
+
+        .sensor-gradient-mark.max {
+            background-color: rgb(255, 44, 44);
+            width: 4px;
+            height: 15px;
+        }
+
+        .sensor-pointer {
+            width: 4px;
+            height: 20px;
+            background: rgba(39, 39, 39, 0.76);
+            position: absolute;
+        }
+
+        .current-temp {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 0.75em;
+        }
+    </style>
+</head>
+<body>
+    <div id="sensor-container"></div>
+
+    <script>
+        const sensors = [
+            {
+                name: "Sensor 1",
+                min: 10,
+                max: 86,
+                unit: "F",
+                current: 20
+            },
+            {
+                name: "Sensor 2",
+                min: 32,
+                max: 75,
+                unit: "F",
+                current: 60
+            },
+            {
+                name: "Sensor 3",
+                min: -5,
+                max: 30,
+                unit: "C",
+                current: 25
+            },
+            {
+                name: "Sensor 4",
+                min: 10,
+                max: 90,
+                unit: "F",
+                current: 80
+            },
+        ];
+
+        const container = document.getElementById('sensor-container');
+
+        function createSensorCard(sensorData) {
+            const sensorCard = document.createElement('div');
+            sensorCard.className = 'sensor-card';
+            sensorCard.innerHTML = `
+                <div class="sensor-name" data-sensor-name="${sensorData.name}">
+                    ${sensorData.name}
+                    <span class="unit-toggle" onclick="toggleUnit('${sensorData.name}')">[°${sensorData.unit === 'C' ? 'F' : 'C'}]</span>
+                </div>
+                <div class="sensor-data-wrapper">
+                    <div class="sensor-data">
+                        <span class="label">Min:</span><span>${Math.round(sensorData.min)} °${sensorData.unit}</span>
+                        <span class="label">Max:</span><span>${Math.round(sensorData.max)} °${sensorData.unit}</span>
+                    </div>
+                    <div class="sensor-gradient" data-sensor-bar>
+                        <div class="sensor-gradient-mark min"></div>
+                        <div class="sensor-gradient-mark max"></div>
+                        <div class="sensor-pointer" data-sensor-pointer></div>
+                    </div>
+                    <div class="current-temp"></div>
+                </div>
+            `;
+
+            const currentTemp = sensorCard.querySelector('.current-temp');
+            currentTemp.textContent = `${Math.round(sensorData.current)} °${sensorData.unit}`;
+
+            // Update the gradient styles
+            const celsiusMin = (sensorData.min - 32) * 5/9;
+            const celsiusMax = (sensorData.max - 32) * 5/9;
+            const celsiusCurrent = (sensorData.current - 32) * 5/9;
+            const min = -17;
+            const max = 37;
+            const current = Math.min(max, Math.max(min, celsiusCurrent));
+            const percentage = (current - min) / (max - min) * 100;
+            const minPosition = (Math.min(max, Math.max(min, celsiusMin)) - min) / (max - min) * 100;
+            const maxPosition = (Math.min(max, Math.max(min, celsiusMax)) - min) / (max - min) * 100;
+
+            const sensorPointer = sensorCard.querySelector('[data-sensor-pointer]');
+            sensorPointer.style.left = `${percentage}%`;
+
+            const sensorGradientMin = sensorCard.querySelector('.sensor-gradient-mark.min');
+            sensorGradientMin.style.left = `${minPosition}%`;
+
+            const sensorGradientMax = sensorCard.querySelector('.sensor-gradient-mark.max');
+            sensorGradientMax.style.left = `${maxPosition}%`;
+
+            return sensorCard;
+        }
+
+        function toggleUnit(sensorName) {
+            const sensor = sensors.find(sensor => sensor.name === sensorName);
+            if (sensor.unit === "C") {
+                sensor.unit = "F";
+                sensor.min = (sensor.min * 9/5) + 32;
+                sensor.max = (sensor.max * 9/5) + 32;
+                sensor.current = (sensor.current * 9/5) + 32;
+            } else {
+                sensor.unit = "C";
+                sensor.min = (sensor.min - 32) * 5/9;
+                sensor.max = (sensor.max - 32) * 5/9;
+                sensor.current = (sensor.current - 32) * 5/9;
+            }
+            const sensorCard = createSensorCard(sensor);
+            const sensorIndex = sensors.findIndex(sensor => sensor.name === sensorName);
+            container.replaceChild(sensorCard, container.childNodes[sensorIndex]);
+        }
+
+        sensors.forEach(sensor => {
+            const sensorCard = createSensorCard(sensor);
+            container.appendChild(sensorCard);
+        });
+    </script>
+</body>
+</html>
