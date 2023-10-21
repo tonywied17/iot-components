@@ -17,6 +17,28 @@
     </nav>
     <h2 id="sensor-count"></h2>
     <div class="container" id="sensor-container"></div>
+    <div class="settings" id="settings-overlay">
+        <div class="settings-overlay-arrow"></div>
+        <div class="overlay-header"><i class="fa-solid fa-gears"></i> Settings</div>
+        <div class="overlay-content">
+            <h4>Temperature Range UI</h4>
+            <div class="option">
+                <p>Normal Activity</p>
+                <input type="color" value="#008000">
+            </div>
+            <div class="option">
+                <p>Heat Alert <span style="font-size:0.75rem;">[Medium]</span></p>
+                <input type="text" placeholder="" value="70">
+                <input type="color" value="#ff9933">
+            </div>
+            <div class="option">
+                <p>Heat Alert <span style="font-size:0.75rem;">[High]</span></p>
+                <input type="text" placeholder="" value="80">
+                <input type="color" value="#e73e3e">
+            </div>
+        </div>
+    </div>
+      
     <script src="js/dom.js"></script>
     <script src="components/TemperatureSensor.js"></script>
     <script src="components/SwitchSensor.js"></script>

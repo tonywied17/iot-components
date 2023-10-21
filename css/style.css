@@ -132,15 +132,15 @@ body {
     background-color: #333; 
     margin: 0; 
     width: 100%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .unit-toggle {
     font-size: 12px;
     font-weight: 900;
     cursor: pointer;
-    color: #fff;
+    color: rgb(229 229 229);
     border-bottom: 1px dotted #fff;
     user-select: none;
     transition: all 0.5s ease;
@@ -152,6 +152,76 @@ body {
 
 .unit-toggle:hover {
     opacity: 0.8;
+}
+
+/* Settings Overlay */
+.settings {
+    position: absolute;
+    background: #333333d3;
+    width: 60vw;
+    height: 690px;
+    top: 70px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    padding: 1em;
+    display: flex;
+    flex-direction: column; 
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 1em;
+}
+
+.option p {
+    margin: 0;
+    width: 150px;
+}
+
+.option input[type="text"] {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.option input[type="color"] {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+.overlay-header {
+    /* background: #333; */
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.overlay-content {
+    background: #333333dc;
+    padding: 15px;
+    border-radius: 10px;
+    flex: 1; 
+    margin: 1em;
+}
+
+.settings-overlay-arrow {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #333333d3;
+    position: absolute;
+    top: -15px;
+    left: calc(50% + 75px);
+    transform: translateX(-50%);
 }
 
 /* Specific card styles */
@@ -189,5 +259,8 @@ body {
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;
+    }
+    .settings {
+        width: 90vw;
     }
 }
