@@ -12,10 +12,14 @@ function renderCounterSensor(data) {
     }
 
     card.innerHTML = `
-        <h3>${data.name}</h3>
-        <p style="font-size:1.2rem;">${data.current} / ${data.limit} Persons</p>
-        <p>Min Count: ${data.min}</p>
-        <p>Max Count: ${data.max}</p>
+    <div class="sensor-content">
+        <div class="header">
+            <h3>${data.name}</h3>
+        </div>
+            <p style="font-size:1.2rem;">${data.current} / ${data.limit} Persons</p>
+            <p>Min Count: ${data.min}</p>
+            <p>Max Count: ${data.max}</p>
+    </div>
     `;
 
     card.classList.add(cardClass);

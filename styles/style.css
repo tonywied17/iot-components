@@ -87,6 +87,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    padding: 1em 0;
 }
 
 .left-column,
@@ -116,21 +117,39 @@ body {
     color: #fff;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    background-color: #333; 
+    margin: 0; 
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
 .unit-toggle {
     font-size: 12px;
-    margin: 5px;
     font-weight: 900;
-    float: right;
     cursor: pointer;
     color: #fff;
     border-bottom: 1px dotted #fff;
     user-select: none;
     transition: all 0.5s ease;
+    padding: 0.25rem 0.5rem; 
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 5px; 
+    margin-right: 2px;
 }
 
 .unit-toggle:hover {
     opacity: 0.8;
 }
+
+
+
+
 
 /* Specific card styles */
 .temperature-card {
@@ -150,17 +169,17 @@ body {
 
 .counter-card.normal {
     background-color: #135589;
-    border: 1px solid #0e3b56;
+    border: 1px solid #333;
 }
 
 .counter-card.medium {
     background-color: #ff9933;
-    border: 1px solid #ff9933;
+    border: 1px solid #333;
 }
 
 .counter-card.high {
     background-color: #e73e3e;
-    border: 1px solid #e73e3e;
+    border: 1px solid #333;
 }
 
 /* Mobile responsiveness */

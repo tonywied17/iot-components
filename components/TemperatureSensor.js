@@ -7,7 +7,10 @@ function renderTemperatureSensor(data) {
 
     card.innerHTML = `
     <div class="sensor-content">
-        <h3>${data.name} <span class="unit-toggle" onclick="toggleUnit('${data.name}')">[°F/°C]</span></h3>
+        <div class="header">
+            <h3>${data.name}</h3>
+            <span class="unit-toggle" onclick="toggleUnit('${data.name}')">[°F/°C]</span>
+        </div>
         <span style="display:none;" id="unit-${data.name}">${currentUnit}</span>
         <div class="temperatures">
             <div class="left-column">
@@ -27,6 +30,7 @@ function renderTemperatureSensor(data) {
         <div class="sensor-graph">(Graph)</div>
     </div>
 `;
+
 
     return card;
 }
