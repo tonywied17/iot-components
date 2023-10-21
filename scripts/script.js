@@ -68,8 +68,6 @@ const sensors = [
 ];
 
 
-const sensorContainer = document.getElementById('sensor-container');
-
 sensors.forEach(sensor => {
     let sensorComponent;
     switch (sensor.type) {
@@ -83,5 +81,15 @@ sensors.forEach(sensor => {
             sensorComponent = renderCounterSensor(sensor);
             break;
     }
-    sensorContainer.appendChild(sensorComponent);
+    Id('sensor-container').appendChild(sensorComponent);
 });
+
+
+if(sensors.length == 1){
+    Id('sensor-count').innerHTML = `${sensors.length} Sensor Found`;
+} else if(sensors <= 0) {
+    Id('sensor-count').innerHTML = `No Sensors found`;
+}else{
+    Id('sensor-count').innerHTML = `${sensors.length} Sensors Found`;
+}
+

@@ -7,8 +7,16 @@
     <title>IOT Sensor Dashboard</title>
 </head>
 <body>
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Devices</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </nav>
+    <h2 id="sensor-count"></h2>
     <div class="container" id="sensor-container"></div>
-
+    <script src="scripts/dom.js"></script>
     <script src="components/TemperatureSensor.js"></script>
     <script src="components/SwitchSensor.js"></script>
     <script src="components/CounterSensor.js"></script>

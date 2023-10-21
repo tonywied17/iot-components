@@ -24,6 +24,7 @@ function renderTemperatureSensor(data) {
                 </p>
             </div>
         </div>
+        <div class="sensor-graph">(Graph)</div>
     </div>
 `;
 
@@ -32,33 +33,36 @@ function renderTemperatureSensor(data) {
 
 
 function toggleUnit(sensorName) {
-    const unitElement = document.getElementById(`unit-${sensorName}`);
-    const tempElement = document.getElementById(`temp-${sensorName}`);
-    const tempMinElement = document.getElementById(`temp-min-${sensorName}`);
-    const currentUnit = unitElement.textContent;
+    const currentUnit = Id(`unit-${sensorName}`).textContent;
     let newUnit;
 
     if (currentUnit === "F") {
         newUnit = "C";
-        const currentTemperature = parseFloat(tempElement.textContent);
-        const currentMinTemperature = parseFloat(tempMinElement.textContent)
+        const currentTemperature = parseFloat(Id(`temp-${sensorName}`).textContent);
+        const currentMinTemperature = parseFloat(Id(`temp-min-${sensorName}`).textContent)
+        const currentMaxTemperature = parseFloat(Id(`temp-max-${sensorName}`).textContent)
         const newTemperature = convertToCelsius(currentTemperature).toFixed(2);
         const newMinTemperature = convertToCelsius(currentMinTemperature).toFixed(2);
-        tempElement.textContent = `${newTemperature} °${newUnit}`;
-        tempMinElement.textContent = `${newMinTemperature} °${newUnit}`;
+        const newMaxTemperature = convertToCelsius(currentMaxTemperature).toFixed(2);
+        Id(`temp-${sensorName}`).textContent = `${newTemperature} °${newUnit}`;
+        Id(`temp-min-${sensorName}`).textContent = `${newMinTemperature} °${newUnit}`;
+        Id(`temp-max-${sensorName}`).textContent = `${newMaxTemperature} °${newUnit}`;
     } else {
         newUnit = "F";
-        const currentTemperature = parseFloat(tempElement.textContent);
-        const currentMinTemperature = parseFloat(tempMinElement.textContent)
+        const currentTemperature = parseFloat(Id(`temp-${sensorName}`).textContent);
+        const currentMinTemperature = parseFloat(Id(`temp-min-${sensorName}`).textContent)
+        const currentMaxTemperature = parseFloat(Id(`temp-max-${sensorName}`).textContent)
         const newTemperature = convertToFahrenheit(currentTemperature).toFixed(2);
         const newMinTemperature = convertToFahrenheit(currentMinTemperature).toFixed(2);
-        tempElement.textContent = `${newTemperature} °${newUnit}`;
-        tempMinElement.textContent = `${newMinTemperature} °${newUnit}`;
+        const newMaxTemperature = convertToFahrenheit(currentMaxTemperature).toFixed(2);
+        Id(`temp-${sensorName}`).textContent = `${newTemperature} °${newUnit}`;
+        Id(`temp-min-${sensorName}`).textContent = `${newMinTemperature} °${newUnit}`;
+        Id(`temp-max-${sensorName}`).textContent = `${newMaxTemperature} °${newUnit}`;
     }
 
-    const temperatureColor = getTemperatureColor(parseFloat(tempElement.textContent), newUnit);
-    tempElement.style.color = temperatureColor;
-    unitElement.textContent = newUnit;
+    const temperatureColor = getTemperatureColor(parseFloat(Id(`temp-${sensorName}`).textContent), newUnit);
+    Id(`temp-${sensorName}`).style.color = temperatureColor;
+    Id(`unit-${sensorName}`).textContent = newUnit;
 }
 
 function convertToFahrenheit(celsius) {
