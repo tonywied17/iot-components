@@ -194,18 +194,20 @@ body {
     position: absolute;
     background: #333333d3;
     width: 600px;
-    height: 62vh;
+    max-height: 60vh; 
+    height: auto;
     top: 70px;
     border-radius: 10px;
     backdrop-filter: blur(5px);
     padding: 1em;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     display: none;
 }
 
 .sensor-setting-list {
-    height: calc(100% - 70px);
+    max-height: calc(60vh - 70px); 
+    height: 100%;
     margin: 1em;
     overflow: auto;
 }
