@@ -27,6 +27,7 @@ body {
     justify-content: center;
     width: 100%;
     margin-bottom: 1em;
+    user-select: none;
 }
 
 .nav-menu {
@@ -134,6 +135,7 @@ body {
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    user-select: none;
 }
 
 .unit-toggle {
@@ -159,13 +161,14 @@ body {
     position: absolute;
     background: #333333d3;
     width: 60vw;
-    height: 690px;
+    max-height: 690px;
     top: 70px;
     border-radius: 10px;
     backdrop-filter: blur(5px);
     padding: 1em;
     display: flex;
     flex-direction: column; 
+    display: none;
 }
 
 .option {
@@ -178,6 +181,8 @@ body {
 .option p {
     margin: 0;
     width: 150px;
+    margin-right: 20px;
+    user-select: none;
 }
 
 .option input[type="text"] {
@@ -202,14 +207,21 @@ body {
     /* background: #333; */
     padding: 5px;
     border-radius: 10px;
+    user-select: none;
+}
+
+.overlay-content h4 {
+    margin-top: 0;
+    user-select: none;
 }
 
 .overlay-content {
-    background: #333333dc;
+    background: #121212d9;
     padding: 15px;
     border-radius: 10px;
     flex: 1; 
     margin: 1em;
+    font-size: 0.9rem;
 }
 
 .settings-overlay-arrow {

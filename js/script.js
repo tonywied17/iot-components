@@ -99,3 +99,13 @@ if(sensors.length == 1){
     Id('sensor-count').innerHTML = `${sensors.length} Sensors Found`;
 }
 
+
+function toggleDiv(divId) {
+    const div = document.getElementById(divId);
+    if (div.style.display === "none" || div.style.display === "") {
+      div.style.display = "block";
+    } else {
+      div.style.display = "none";
+    }
+  }
+  

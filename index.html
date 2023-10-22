@@ -10,9 +10,9 @@
 <body>
     <nav class="navbar">
         <ul class="nav-menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Devices</a></li>
-            <li><a href="#">Settings</a></li>
+            <li><a href="#" onclick="location.reload();">Main</a></li>
+            <li><a href="#" style="color: gray; cursor:not-allowed">Groups</a></li>
+            <li><a href="#" onclick="toggleDiv('settings-overlay')">Settings</a></li>
         </ul>
     </nav>
     <h2 id="sensor-count"></h2>
@@ -21,7 +21,8 @@
         <div class="settings-overlay-arrow"></div>
         <div class="overlay-header"><i class="fa-solid fa-gears"></i> Settings</div>
         <div class="overlay-content">
-            <h4>Temperature Range UI</h4>
+            <h4>Temperature Range Alerts</h4>
+            
             <div class="option">
                 <p>Normal Activity</p>
                 <input type="color" value="#008000">
@@ -34,6 +35,24 @@
             <div class="option">
                 <p>Heat Alert <span style="font-size:0.75rem;">[High]</span></p>
                 <input type="text" placeholder="" value="80">
+                <input type="color" value="#e73e3e">
+            </div>
+        </div>
+        <div class="overlay-content">
+            <h4>Occupancy Percentage Alerts</h4>
+            
+            <div class="option">
+                <p>Normal</p>
+                <input type="color" value="#135589">
+            </div>
+            <div class="option">
+                <p>Medium %</p>
+                <input type="text" placeholder="" value="50">
+                <input type="color" value="#ff9933">
+            </div>
+            <div class="option">
+                <p>High %</span></p>
+                <input type="text" placeholder="" value="70">
                 <input type="color" value="#e73e3e">
             </div>
         </div>
