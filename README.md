@@ -1,1 +1,1 @@
-[10-21-23@4:15PM](https://molex.cloud/2023/October/21/_F5i/view_widgets/)
+[10-21-23@4:15PM](https://molex.cloud/2023/October/21/_CVS/widgets/)
