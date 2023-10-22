@@ -146,8 +146,8 @@ function renderSensorSetting(sensor) {
         </div>
         ${renderAdditionalOptions(sensor, sensor.name)}
         <div class="option">
-            <button onclick="deleteSensor('${sensor.name}')">Delete Sensor</button>
-            <button onclick="saveSensor('${sensor.name}')">Save Sensor</button>
+            <button class="delete-btn" onclick="deleteSensor('${sensor.name}')"><i class="fa-solid fa-x btn-icon"></i>Delete</button>
+            <button onclick="saveSensor('${sensor.name}')"><i class="fa-regular fa-floppy-disk btn-icon"></i>Save</button>
         </div>
     `;
     return sensorDiv;

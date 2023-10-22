@@ -194,7 +194,7 @@ body {
     position: absolute;
     background: #333333d3;
     width: 600px;
-    height: 70vh;
+    height: 62vh;
     top: 70px;
     border-radius: 10px;
     backdrop-filter: blur(5px);
@@ -210,6 +210,19 @@ body {
     overflow: auto;
 }
 
+.btn-icon {
+    font-size: 12px !important;
+    margin: unset !important;
+    margin-right: 5px !important;
+}
+
+.delete-btn {
+    background: rgb(160, 35, 35) !important;
+}
+
+.delete-btn:hover{
+    background: rgb(179, 46, 46) !important;
+}
 
 .option button {
     background: #232323; 
@@ -242,11 +255,12 @@ body {
 
 .option input[type="text"] {
     width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
+    padding: 8px;
+    border: 1px solid #333333;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 13px;
     margin-right: 10px;
+    background:#333333d3;
 }
 
 .option input[type="color"] {
@@ -339,6 +353,7 @@ select {
         grid-template-columns: 1fr;
     }
     .settings {
-        width: 90vw;
+        width: 95vw;
+        padding: 0.15em;
     }
 }
