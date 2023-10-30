@@ -1,3 +1,4 @@
+// Some Faux Sensor Data
 const sensors = [
     {
         name: "Living Room Temperature",
@@ -67,13 +68,16 @@ const sensors = [
     }
 ];
 
+// Global Icons for Sensor Types
 var g_icons = {
     switch: `<i class="fa-regular fa-lightbulb"></i>`,
     counter: `<i class="fa-solid fa-people-group"></i>`,
     temperature: `<i class="fa-solid fa-temperature-quarter"></i>`
 };
 
-
+/**
+ * Iterates through the array of sensor objects and renders the corresponding sensor component
+ */
 function initSensorCards() {
     Id('sensor-container').innerHTML = '';
 
@@ -101,7 +105,9 @@ function initSensorCards() {
     initSensorCardsSettings();
 }
 
-
+/**
+ * Counts sensor objects in the array
+ */
 function sensorCount() {
     if (sensors.length === 1) {
         Id('sensor-count').innerHTML = `${sensors.length} Sensor Found`;
@@ -112,15 +118,9 @@ function sensorCount() {
     }
 }
 
-function toggleDiv(divId) {
-    const div = document.getElementById(divId);
-    if (div.style.display === "none" || div.style.display === "") {
-        div.style.display = "block";
-    } else {
-        div.style.display = "none";
-    }
-}
-
+/**
+ * Iterates the array of sensor objects and calls teh render sensor setting method for each one
+ */
 function initSensorCardsSettings() {
     const sensorList = document.getElementById('sensor-list');
     sensorList.innerHTML = '';
@@ -131,6 +131,11 @@ function initSensorCardsSettings() {
     });
 }
 
+/**
+ * Render Settings for Sensor in Settings Overlay
+ * @param {*} sensor - sensor object
+ * @returns Rendered setting component for requested sensor
+ */
 function renderSensorSetting(sensor) {
     const sensorDiv = document.createElement("div");
     sensorDiv.className = "overlay-content";
@@ -158,20 +163,12 @@ function renderSensorSetting(sensor) {
     return sensorDiv;
 }
 
-
-function getSensorTypeTitle(type) {
-    switch (type) {
-        case "temperature":
-            return "Temperature";
-        case "switch":
-            return "Switch";
-        case "counter":
-            return "Counter";
-        default:
-            return "Unknown";
-    }
-}
-
+/**
+ * Additional Sensor Settings
+ * @param {*} sensor - The sensor object
+ * @param {*} sensorName - Name of the selected sensor
+ * @returns - Additional settings/fields based on type of sensor
+ */
 function renderAdditionalOptions(sensor, sensorName) {
     if (sensor.type === "counter") {
         return `
@@ -180,12 +177,27 @@ function renderAdditionalOptions(sensor, sensorName) {
                 <input type="text" id="sensor-limit-${sensorName}" value="${sensor.limit || ''}">
             </div>
         `;
+    } else if (sensor.type === "temperature") {
+        const unit = sensor.unit || 'F';
+        return `
+            <div class="option">
+                <p>Unit</p>
+                <select id="sensor-unit-${sensorName}">
+                    <option value="F" ${unit === 'F' ? 'selected' : ''}>Fahrenheit</option>
+                    <option value="C" ${unit === 'C' ? 'selected' : ''}>Celsius</option>
+                </select>
+            </div>
+        `;
     }
     return '';
 }
 
-
+/**
+ * Delete Sensor from List
+ * @param {*} sensorName 
+ */
 function deleteSensor(sensorName) {
+    event.stopPropagation();
     const index = sensors.findIndex(sensor => sensor.name === sensorName);
     if (index !== -1) {
         sensors.splice(index, 1);
@@ -194,13 +206,12 @@ function deleteSensor(sensorName) {
     sensorCount();
 }
 
-function getSensorTypeOptions(selectedType) {
-    const sensorTypes = ["temperature", "switch", "counter"];
-    return sensorTypes.map(type => `<option value="${type}" ${type === selectedType ? 'selected' : ''}>${getSensorTypeTitle(type)}</option>`).join('');
-}
-
-
+/**
+ * Save Sensor Settings
+ * @param {*} sensorName 
+ */
 function saveSensor(sensorName) {
+    event.stopPropagation();
     const nameInput = document.getElementById(`sensor-name-${sensorName}`);
     const typeSelect = nameInput.parentElement.nextElementSibling.querySelector("select");
 
@@ -216,13 +227,85 @@ function saveSensor(sensorName) {
             } else {
                 alert("Please enter a valid number for the limit.");
             }
+        } else if (sensor.type === "temperature") {
+            const unitSelect = document.getElementById(`sensor-unit-${sensorName}`);
+            const selectedUnit = unitSelect.value;
+
+            if (sensor.unit !== selectedUnit) {
+                // The unit is changing, so convert the values.
+                if (selectedUnit === 'C') {
+                    sensor.min = convertToCelsius(sensor.min);
+                    sensor.max = convertToCelsius(sensor.max);
+                    sensor.current = convertToCelsius(sensor.current);
+                } else {
+                    sensor.min = convertToFahrenheit(sensor.min);
+                    sensor.max = convertToFahrenheit(sensor.max);
+                    sensor.current = convertToFahrenheit(sensor.current);
+                }
+                sensor.unit = selectedUnit;
+            }
         } else {
             delete sensor.limit;
+            delete sensor.unit;
         }
         initSensorCards();
     }
 }
 
+/**
+ * Select box of available sensors (not used)
+ * @param {*} selectedType 
+ * @returns List of available sensor components
+ */
+function getSensorTypeOptions(selectedType) {
+    const sensorTypes = ["temperature", "switch", "counter"];
+    return sensorTypes.map(type => `<option value="${type}" ${type === selectedType ? 'selected' : ''}>${getSensorTypeTitle(type)}</option>`).join('');
+}
 
+/**
+ * Sensor Types Display Title
+ * @param {*} type 
+ * @returns First char of sensor type capitalized for UI purposes.
+ */
+function getSensorTypeTitle(type) {
+    return type.charAt(0).toUpperCase() + type.slice(1);
+}
 
+/**
+ * Toggles requested overlay, will need a navigation listener below
+ * @param {*} overlayId - the id of the dom element you wish to toggle visibility of
+ */
+function toggleOverlay(overlayId) {
+    const overlay = document.getElementById(overlayId);
+    if (overlay.style.display === "block") {
+        overlay.style.display = "none";
+    } else {
+        overlay.style.display = "block";
+    }
+}
+
+/**
+ * Toggles requested overlay closed
+ * @param {*} overlayId - the id of the dom element you wish to toggle visibility of
+ * @param {*} triggerElement
+ */
+function closeOverlay(overlayId, triggerElement) {
+    document.addEventListener('click', function (event) {
+        const overlay = document.getElementById(overlayId);
+        if (overlay.style.display === "block" && event.target !== triggerElement && !overlay.contains(event.target)) {
+            overlay.style.display = "none";
+        }
+    });
+}
+/**
+ * Navigation Listeners for Overlays
+ */
+// ? Settings Overlay
+Id("settings-link").addEventListener('click', function (event) {
+    event.preventDefault();
+    toggleOverlay('settings-overlay');
+});
+closeOverlay('settings-overlay', Id("settings-link"));
+
+// ! Init Sensor Cards.
 initSensorCards();

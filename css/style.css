@@ -265,24 +265,21 @@ body {
     background:#333333d3;
 }
 
-.option input[type="color"] {
-    width: 30px;
-    height: 30px;
-    border: none;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
+.option input[type="text"],
 select {
     width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
+    padding: 8px;
+    border: 1px solid #333333;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 13px;
     margin-right: 10px;
-    background-color: #fff;
-    color: #333;
+    background: #333333d3;
+    color: #fff;
+    margin: 0;
+    box-sizing: border-box;
 }
+
+
 
 
 .overlay-header {

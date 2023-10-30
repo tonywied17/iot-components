@@ -12,7 +12,7 @@
         <ul class="nav-menu">
             <li><a href="#" onclick="location.reload();"><i class="fa-solid fa-gauge-high nav-icon"></i>Dashboard</a></li>
             <li><a href="#" style="color: gray; cursor:not-allowed"><i class="fa-solid fa-user-group nav-icon"></i>Groups</a></li>
-            <li><a href="#" onclick="toggleDiv('settings-overlay')"><i class="fa-solid fa-gear nav-icon"></i>Settings</a></li>
+            <li><a id="settings-link" href="#"><i class="fa-solid fa-gear nav-icon"></i>Settings</a></li>
         </ul>
     </nav>
     <h2 id="sensor-count"></h2>
@@ -20,11 +20,7 @@
     <div class="settings" id="settings-overlay">
         <div class="settings-overlay-arrow"></div>
         <div class="overlay-header"><i class="fa-solid fa-gears"></i>Sensor Settings</div>
-        <div class="sensor-setting-list" id="sensor-list">
-
-        </div>
-        
-
+        <div class="sensor-setting-list" id="sensor-list"></div>
     </div>
       
     <script src="js/dom.js"></script>
