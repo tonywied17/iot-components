@@ -166,8 +166,8 @@ body {
     background-color: #333; 
     margin: 0; 
     width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     user-select: none;
 }
 
