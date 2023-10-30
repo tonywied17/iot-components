@@ -81,7 +81,7 @@ function renderTemperatureSensorC(data) {
         <div class="temperatures">
             <div class="left-column">
                 <span class="temp-label">Current</span>
-                <div role="temp-gauge-f" aria-valuenow="${data.current.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.current.toFixed(2)};--fg:${getTemperatureColor(data.current, data.unit)};"></div>
+                <div role="temp-gauge-c" aria-valuenow="${data.current.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.current.toFixed(2)};--fg:${getTemperatureColor(data.current, data.unit)};"></div>
             </div>      
             <div class="right-column">
                 <p style="color: ${getTemperatureColor(data.min, data.unit)};">
