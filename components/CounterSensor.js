@@ -16,9 +16,8 @@ function renderCounterSensor(data) {
         <div class="header">
             <h3>${g_icons.counter + data.name}</h3>
         </div>
-            <p style="font-size:1.2rem;">${data.current} / ${data.limit} Persons</p>
-            <p>Min Count: ${data.min}</p>
-            <p>Max Count: ${data.max}</p>
+            <span style="font-size:3rem;">${data.current} <sup style="font-size:1rem;">/ ${data.limit}</sup></span>
+            <p>Peak: ${data.max}</p>
     </div>
     `;
 

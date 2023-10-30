@@ -25,6 +25,14 @@ const sensors = [
         current: 64
     },
     {
+        name: "Server Room 1",
+        type: "temperature",
+        min: 52,
+        max: 61,
+        unit: "F",
+        current: 56
+    },
+    {
         name: "Outdoor Temperature",
         type: "temperature",
         min: 50,

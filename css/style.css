@@ -125,6 +125,18 @@ body {
     width: 50%;
 }
 
+
+
+.right-column p {
+    margin: 0;
+    padding-right: 5px;
+    margin-bottom: 5px;
+}
+
+.left-column .temp-label {
+    margin-bottom: 5px;
+}
+
 .fa-regular, .fa-solid {
     font-size: 1rem !important;
     opacity: 0.8;
@@ -265,6 +277,7 @@ body {
     background:#333333d3;
 }
 
+
 .option input[type="text"],
 select {
     width: 100%;
@@ -331,19 +344,25 @@ select {
     border: 1px solid #333;
 }
 
-.counter-card.normal {
-    background-color: #135589;
+.normal {
+    background: transparent;
     border: 1px solid #333;
 }
 
-.counter-card.medium {
-    background-color: #ff9933;
+.medium {
+    background: transparent;
     border: 1px solid #333;
+    border-top: 2px dotted rgba(255, 153, 51, 0.7);
+    border-bottom: 2px dotted rgba(255, 153, 51, 0.7);
+    color: #ff9933;
 }
 
-.counter-card.high {
-    background-color: #e73e3e;
+.high {
+    background: transparent;
     border: 1px solid #333;
+    border-top: 2px dotted rgba(231, 62, 62, 0.7);
+    border-bottom: 2px dotted rgba(231, 62, 62, 0.7);
+    color: #e73e3e;
 }
 
 /* Mobile responsiveness */
@@ -371,21 +390,23 @@ select {
     font-weight:200;
     font-size:0.81rem;
     color:#ccc;
-    margin-left: -1rem;
 }
 
 @keyframes growProgressBar {
-    0%, 33% { --pgPercentage: 0; }
-    100% { --pgPercentage: var(--value); }
+    0%, 33% { --tempPercentage: 0; }
+    100% { --tempPercentage: var(--value); }
 }
 
-@property --pgPercentage {
+@property --tempPercentage {
     syntax: '<number>';
     inherits: false;
     initial-value: 0;
 }
 
-div[role="progressbar-f"] {
+
+
+
+div[role="temp-gauge-f"] {
     --size: 8rem;
     --fg: #333;
     --bg: #333;
@@ -397,20 +418,53 @@ div[role="progressbar-f"] {
     place-items: center;
     background: 
       radial-gradient(closest-side, #121212 80%, transparent 0 99.9%, #333 0),
-      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--bg) 0);
       font-family: 'Noto Sans', sans-serif;
     font-size: calc(var(--size) / 8);
     color: var(--fg);
-    margin:1em;
+    margin: auto;
 }
 
-div[role="progressbar-f"]::before {
+div[role="temp-gauge-f"]::before {
     font-weight: 700;
     content: '°F ' attr(aria-valuenow);
 }
 
 
-div[role="progressbar-c"] {
+
+
+
+
+div[role="mini-temp-gauge-f"] {
+    --size: 4rem;
+    --fg: #333;
+    --bg: #333;
+    animation: growProgressBar .8s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: 
+      radial-gradient(closest-side, #121212 80%, transparent 0 99.9%, #333 0),
+      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--bg) 0);
+      font-family: 'Noto Sans', sans-serif;
+    font-size: calc(var(--size) / 6);
+    color: var(--fg);
+    margin: auto;
+}
+
+div[role="mini-temp-gauge-f"]::before {
+    font-weight: 700;
+    content: '°F ' attr(aria-valuenow);
+}
+
+
+
+
+
+
+div[role="temp-gauge-c"] {
     --size: 8rem;
     --fg: #333;
     --bg: #333;
@@ -422,14 +476,40 @@ div[role="progressbar-c"] {
     place-items: center;
     background: 
       radial-gradient(closest-side, #121212 80%, transparent 0 99.9%, #333 0),
-      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--bg) 0);
       font-family: 'Noto Sans', sans-serif;
     font-size: calc(var(--size) / 8);
     color: var(--fg);
     margin:1em;
 }
 
-div[role="progressbar-c"]::before {
+div[role="temp-gauge-c"]::before {
+    font-weight: 700;
+    content: '°C ' attr(aria-valuenow);
+}
+
+
+
+div[role="mini-temp-gauge-c"] {
+    --size: 4rem;
+    --fg: #333;
+    --bg: #333;
+    animation: growProgressBar .8s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: 
+      radial-gradient(closest-side, #121212 80%, transparent 0 99.9%, #333 0),
+      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--bg) 0);
+      font-family: 'Noto Sans', sans-serif;
+    font-size: calc(var(--size) / 6);
+    color: var(--fg);
+    margin: auto;
+}
+
+div[role="mini-temp-gauge-c"]::before {
     font-weight: 700;
     content: '°C ' attr(aria-valuenow);
 }
