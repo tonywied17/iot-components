@@ -1,6 +1,6 @@
 /* Reset and general styles */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
     color-scheme: dark;
 }
@@ -10,7 +10,7 @@
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
     margin: 0;
     padding: 0 1em;
     display: flex;
@@ -117,7 +117,7 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 1em 0;
+    padding: 5px;
 }
 
 .left-column,
@@ -358,4 +358,81 @@ select {
         width: 95vw;
         padding: 0.15em;
     }
+    .temp-label{
+        font-size: 1rem !important;
+    }
+}
+
+
+
+/*
+    
+*/
+
+.temp-label{
+    display:block;
+    font-weight:200;
+    font-size:0.81rem;
+    color:#ccc;
+    margin-left: -1rem;
+}
+
+@keyframes growProgressBar {
+    0%, 33% { --pgPercentage: 0; }
+    100% { --pgPercentage: var(--value); }
+}
+
+@property --pgPercentage {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+}
+
+div[role="progressbar-f"] {
+    --size: 8rem;
+    --fg: #333;
+    --bg: #333;
+    animation: growProgressBar .8s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: 
+      radial-gradient(closest-side, #121212 80%, transparent 0 99.9%, #333 0),
+      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+      font-family: 'Noto Sans', sans-serif;
+    font-size: calc(var(--size) / 8);
+    color: var(--fg);
+    margin:1em;
+}
+
+div[role="progressbar-f"]::before {
+    font-weight: 700;
+    content: '°F ' attr(aria-valuenow);
+}
+
+
+div[role="progressbar-c"] {
+    --size: 8rem;
+    --fg: #333;
+    --bg: #333;
+    animation: growProgressBar .8s 1 forwards;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: 
+      radial-gradient(closest-side, #121212 80%, transparent 0 99.9%, #333 0),
+      conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0);
+      font-family: 'Noto Sans', sans-serif;
+    font-size: calc(var(--size) / 8);
+    color: var(--fg);
+    margin:1em;
+}
+
+div[role="progressbar-c"]::before {
+    font-weight: 700;
+    content: '°C ' attr(aria-valuenow);
 }

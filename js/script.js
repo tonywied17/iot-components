@@ -81,7 +81,12 @@ function initSensorCards() {
         let sensorComponent;
         switch (sensor.type) {
             case "temperature":
-                sensorComponent = renderTemperatureSensor(sensor);
+                if(sensor.unit == 'F') {
+                    sensorComponent = renderTemperatureSensorF(sensor);
+                }else{
+                    sensorComponent = renderTemperatureSensorC(sensor); 
+                }
+                
                 break;
             case "switch":
                 sensorComponent = renderSwitchSensor(sensor);
