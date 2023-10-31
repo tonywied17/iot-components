@@ -6,7 +6,10 @@ function renderSwitchSensor(data) {
         <div class="header">
             <h3>${g_icons.switch + data.name}</h3>
         </div>
-            <p>Status: ${data.value ? 'On' : 'Off'}</p>
+        <div class="switch">
+            <span class="temp-label">Switch State</span>
+            <span style="font-size:2rem;">${data.value ? 'On' : 'Off'}</span>
+        </div>
     <div>
     `;
 

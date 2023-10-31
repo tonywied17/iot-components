@@ -19,7 +19,7 @@ body {
     justify-content: start;
     min-height: 100vh;
     background-color: #121212;
-    color: #fff;
+    color: rgb(229 229 229);
     overflow-x: hidden;
 }
 
@@ -76,7 +76,7 @@ body {
 
 .nav-menu a {
     text-decoration: none;
-    color: #fff;
+    color: rgb(229 229 229);
     font-weight: bold;
     font-size: 16px;
     transition: .3s all ease;
@@ -103,6 +103,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    height: 100%;
 }
 
 .sensor-graph {
@@ -155,6 +156,7 @@ body {
     text-align: center;
     transition: all ease .5s;
     width: 100%;
+    min-height: 222px;
 }
 
 .card:hover {
@@ -167,7 +169,7 @@ body {
     font-weight: 200;
     margin: 0;
     padding: 5px;
-    color: #fff;
+    color: rgb(229 229 229);
 }
 
 .header {
@@ -181,6 +183,15 @@ body {
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
     user-select: none;
+}
+
+.counter, .switch {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    flex-grow: 1; 
+    padding: 0;
 }
 
 .unit-toggle {
@@ -335,34 +346,42 @@ select {
 }
 
 .switch-card.on {
-    background-color: #666;
-    border: 1px solid #555;
+    background-color: transparent;
+    /* border-bottom: 1px solid #f5f0ad; */
+    box-shadow: inset 1px 1px 4px 0px rgb(255 255 255 / 19%), inset 2px 1px 15px 10px rgb(255 255 255 / 8%);
+    border-bottom: 1px solid #ffffff4f;
 }
 
 .switch-card.off {
-    background-color: #121212;
+    background-color: transparent;
     border: 1px solid #333;
+    color: #e73e3e;
+    box-shadow: inset 1px 1px 4px 0px #e73e3e23, inset 2px 1px 15px 10px rgba(255, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(231, 62, 62, 0.7);
 }
 
 .normal {
     background: transparent;
     border: 1px solid #333;
+    box-shadow: inset 1px 1px 4px 0px #fffff323, inset 2px 1px 15px 10px #fffff00c;
+    border-bottom: 1px solid #ffffff4f;
 }
 
 .medium {
     background: transparent;
     border: 1px solid #333;
-    border-top: 2px dotted rgba(255, 153, 51, 0.7);
-    border-bottom: 2px dotted rgba(255, 153, 51, 0.7);
+    /* border-top: 2px dotted rgba(255, 153, 51, 0.7); */
+    border-bottom: 1px solid rgba(255, 153, 51, 0.7);
+    box-shadow: inset 1px 1px 4px 0px #ff993323, inset 2px 1px 15px 10px #ff80000c;
     color: #ff9933;
 }
 
 .high {
     background: transparent;
     border: 1px solid #333;
-    border-top: 2px dotted rgba(231, 62, 62, 0.7);
-    border-bottom: 2px dotted rgba(231, 62, 62, 0.7);
+    border-bottom: 1px solid rgba(231, 62, 62, 0.7);
     color: #e73e3e;
+    box-shadow: inset 1px 1px 4px 0px #e73e3e23, inset 2px 1px 15px 10px rgba(255, 0, 0, 0.08);
 }
 
 /* Mobile responsiveness */
