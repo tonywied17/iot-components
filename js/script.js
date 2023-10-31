@@ -86,29 +86,53 @@ var g_icons = {
 /**
  * Iterates through the array of sensor objects and renders the corresponding sensor component
  */
-function initSensorCards() {
+function initSensorCards(view) {
     Id('sensor-container').innerHTML = '';
 
-    sensors.forEach(sensor => {
-        let sensorComponent;
-        switch (sensor.type) {
-            case "temperature":
-                if(sensor.unit == 'F') {
-                    sensorComponent = renderTemperatureSensorF(sensor);
-                }else{
-                    sensorComponent = renderTemperatureSensorC(sensor); 
-                }
-                
-                break;
-            case "switch":
-                sensorComponent = renderSwitchSensor(sensor);
-                break;
-            case "counter":
-                sensorComponent = renderCounterSensor(sensor);
-                break;
-        }
-        Id('sensor-container').appendChild(sensorComponent);
-    });
+    if (view == 'list') {
+        sensors.forEach(sensor => {
+            let sensorComponent;
+            switch (sensor.type) {
+                case "temperature":
+                    if (sensor.unit == 'F') {
+                        sensorComponent = renderTemperatureSensorF(sensor, view);
+                    } else {
+                        sensorComponent = renderTemperatureSensorC(sensor, view);
+                    }
+
+                    break;
+                case "switch":
+                    sensorComponent = renderSwitchSensor(sensor, view);
+                    break;
+                case "counter":
+                    sensorComponent = renderCounterSensor(sensor, view);
+                    break;
+            }
+            Id('sensor-container').appendChild(sensorComponent);
+        });
+    } else {
+        sensors.forEach(sensor => {
+            let sensorComponent;
+            switch (sensor.type) {
+                case "temperature":
+                    if (sensor.unit == 'F') {
+                        sensorComponent = renderTemperatureSensorF(sensor);
+                    } else {
+                        sensorComponent = renderTemperatureSensorC(sensor);
+                    }
+
+                    break;
+                case "switch":
+                    sensorComponent = renderSwitchSensor(sensor);
+                    break;
+                case "counter":
+                    sensorComponent = renderCounterSensor(sensor);
+                    break;
+            }
+            Id('sensor-container').appendChild(sensorComponent);
+        });
+    }
+
     sensorCount();
     initSensorCardsSettings();
 }
@@ -314,6 +338,41 @@ Id("settings-link").addEventListener('click', function (event) {
     toggleOverlay('settings-overlay');
 });
 closeOverlay('settings-overlay', Id("settings-link"));
+
+/**
+ * Listeners for filter container options
+ */
+// ? List View, Grid View
+let isListView = false;
+Id('view-toggle').addEventListener('click', function () {
+    isListView = !isListView;
+    if (!isListView) {
+        Id('view-toggle').textContent = 'List View';
+    } else {
+        Id('view-toggle').textContent = 'Grid View';
+    }
+    initSensorCards(isListView ? 'list' : 'grid');
+});
+
+/**
+ * Theme Mode Toggle Listeners
+ */
+let isDarkMode = false;
+const modeToggle = document.getElementById('mode-toggle');
+
+modeToggle.addEventListener('click', function () {
+    isDarkMode = !isDarkMode;
+
+    if (isDarkMode) {
+        document.documentElement.setAttribute('data-theme', 'night');
+        modeToggle.textContent = 'Light Mode'
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        modeToggle.textContent = 'Dark Mode'
+    }
+});
+
+
 
 // ! Init Sensor Cards.
 initSensorCards();

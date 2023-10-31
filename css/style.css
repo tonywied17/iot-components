@@ -1,8 +1,35 @@
 /* Reset and general styles */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
+    color-scheme: light;
+    --background-color: #ffffff;
+    --background-color-2: #d1d1d1;
+    --background-color-3: #e7e7e7ef;
+    --overlay-background: #d3d3d3d3;
+    --text-color:  rgb(10 10 10);
+    --text-color-2: #414141;
+    --nav-hover: #ce7721;
+    --button-background: #d6d6d6;
+    --button-text: rgb(10 10 10);
+    --border: rgb(224, 224, 224);
+    --border-bottom: #333;
+}
+
+[data-theme="night"] {
     color-scheme: dark;
+    --background-color: #121212;
+    --background-color-2: #333;
+    --background-color-3: #232323ef;
+    --overlay-background: #333333d3;
+    --text-color: rgb(229 229 229);
+    --text-color-2: #ccc;
+    --nav-hover: #ff9933;
+    --button-background: #333333;
+    --button-text: #ffffff;
+    --border: #333;
+    --border-bottom: #ffffff4f;
 }
 
 *:focus {
@@ -18,8 +45,8 @@ body {
     align-items: center;
     justify-content: start;
     min-height: 100vh;
-    background-color: #121212;
-    color: rgb(229 229 229);
+    background: var(--background-color);
+    color: var(--text-color);
     overflow-x: hidden;
 }
 
@@ -28,29 +55,29 @@ body {
   }
   
   ::-webkit-scrollbar-thumb {
-    background: #333;
+    background: var(--background-color-2);
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: var(--background-color-3);
   }
   
   ::-webkit-scrollbar-track {
-    background: #121212;
+    background: var(--background-color);
   }
   
   ::-webkit-scrollbar-track-piece:end {
-    background: #121212;
+    background: var(--background-color);
   }
   
   ::-webkit-scrollbar-track-piece:start {
-    background: #121212;
+    background: var(--background-color);
   }
   
 
 /* Navbar styles */
 .navbar {
-    background-color: #333;
+    background-color: var(--background-color-2);
     padding: 1rem;
     display: flex;
     justify-content: center;
@@ -76,14 +103,14 @@ body {
 
 .nav-menu a {
     text-decoration: none;
-    color: rgb(229 229 229);
+    color: var(--text-color-2);
     font-weight: bold;
     font-size: 16px;
     transition: .3s all ease;
 }
 
 .nav-menu a:hover {
-    color: #ff9933;
+    color: var(--nav-hover);
 }
 
 /* Container and card styles */
@@ -104,13 +131,6 @@ body {
     align-items: center;
     text-align: center;
     height: 100%;
-}
-
-.sensor-graph {
-    margin: 5px;
-    padding: 5px;
-    font-size: 12px;
-    color: #fff;
 }
 
 .temperatures {
@@ -150,7 +170,7 @@ body {
 }
 
 .card {
-    background-color: #333;
+    background-color: var(--background-color);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     text-align: center;
@@ -159,17 +179,26 @@ body {
     min-height: 222px;
 }
 
-.card:hover {
-    filter: brightness(1.2);
+.card-list {
+    background-color: var(--background-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    transition: all ease .5s;
+    width: 100%;
+}
+
+.card:hover, .card-list:hover {
+    filter: brightness(1.1);
     cursor: pointer;
 }
 
-.card h3 {
+.card h3, .card-list h3 {
     font-size: 1.1rem;
     font-weight: 200;
     margin: 0;
     padding: 5px;
-    color: rgb(229 229 229);
+    color: var(--text-color);
 }
 
 .header {
@@ -177,7 +206,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0;
-    background-color: #333; 
+    background-color: var(--background-color-2); 
     margin: 0; 
     width: 100%;
     border-top-left-radius: 7px;
@@ -215,7 +244,7 @@ body {
 /* Settings Overlay */
 .settings {
     position: absolute;
-    background: #333333d3;
+    background: var(--overlay-background);
     width: 600px;
     max-height: 60vh; 
     height: auto;
@@ -242,7 +271,7 @@ body {
 }
 
 .delete-btn {
-    background: rgb(160, 35, 35) !important;
+    transition: all .2s ease;
 }
 
 .delete-btn:hover{
@@ -250,17 +279,18 @@ body {
 }
 
 .option button {
-    background: #232323; 
-    color: #fff; 
+    background: var(--background-color-2); 
+    color: var(--text-color); 
     border: none;
     padding: 8px 12px;
     margin-right: 10px; 
     border-radius: 5px;
     cursor: pointer;
+    transition: all .2s ease;
 }
 
 .option button:hover {
-    background: #444; 
+    background: var(--background-color); 
 }
 
 .option {
@@ -281,11 +311,11 @@ body {
 .option input[type="text"] {
     width: 100%;
     padding: 8px;
-    border: 1px solid #333333;
+    border: 1px solid var(--border);
     border-radius: 5px;
     font-size: 13px;
     margin-right: 10px;
-    background:#333333d3;
+    background:var(--background-color-2);
 }
 
 
@@ -293,12 +323,12 @@ body {
 select {
     width: 100%;
     padding: 8px;
-    border: 1px solid #333333;
+    border: 1px solid var(--border);
     border-radius: 5px;
     font-size: 13px;
     margin-right: 10px;
-    background: #333333d3;
-    color: #fff;
+    background:var(--background-color-2);
+    color: var(--text-color);
     margin: 0;
     box-sizing: border-box;
 }
@@ -319,7 +349,7 @@ select {
 }
 
 .overlay-content {
-    background: #121212d9;
+    background: var(--background-color-3);
     padding: 15px;
     border-radius: 10px;
     flex: 1; 
@@ -341,20 +371,19 @@ select {
 
 /* Specific card styles */
 .temperature-card {
-    background-color: #121212;
-    border: 1px solid #333;
+    background-color: var(--background-color);
+    border: 1px solid var(--background-color-2);
 }
 
 .switch-card.on {
     background-color: transparent;
-    /* border-bottom: 1px solid #f5f0ad; */
     box-shadow: inset 1px 1px 4px 0px rgb(255 255 255 / 19%), inset 2px 1px 15px 10px rgb(255 255 255 / 8%);
-    border-bottom: 1px solid #ffffff4f;
+    border: 1px solid var(--background-color-2);
 }
 
 .switch-card.off {
     background-color: transparent;
-    border: 1px solid #333;
+    border: 1px solid var(--background-color-2);
     color: #e73e3e;
     box-shadow: inset 1px 1px 4px 0px #e73e3e23, inset 2px 1px 15px 10px rgba(255, 0, 0, 0.08);
     border-bottom: 1px solid rgba(231, 62, 62, 0.7);
@@ -362,14 +391,14 @@ select {
 
 .normal {
     background: transparent;
-    border: 1px solid #333;
+    border: 1px solid var(--background-color-2);
     box-shadow: inset 1px 1px 4px 0px #fffff323, inset 2px 1px 15px 10px #fffff00c;
-    border-bottom: 1px solid #ffffff4f;
+    /* border-bottom: 1px solid var(--border-bottom); */
 }
 
 .medium {
     background: transparent;
-    border: 1px solid #333;
+    border: 1px solid var(--background-color-2);
     /* border-top: 2px dotted rgba(255, 153, 51, 0.7); */
     border-bottom: 1px solid rgba(255, 153, 51, 0.7);
     box-shadow: inset 1px 1px 4px 0px #ff993323, inset 2px 1px 15px 10px #ff80000c;
@@ -378,7 +407,7 @@ select {
 
 .high {
     background: transparent;
-    border: 1px solid #333;
+    border: 1px solid var(--background-color-2);
     border-bottom: 1px solid rgba(231, 62, 62, 0.7);
     color: #e73e3e;
     box-shadow: inset 1px 1px 4px 0px #e73e3e23, inset 2px 1px 15px 10px rgba(255, 0, 0, 0.08);
@@ -408,7 +437,7 @@ select {
     display:block;
     font-weight:200;
     font-size:0.81rem;
-    color:#ccc;
+    color: var(--text-color-2);
 }
 
 @keyframes growProgressBar {
@@ -436,8 +465,8 @@ div[role="temp-gauge-f"] {
     display: grid;
     place-items: center;
     background: 
-      radial-gradient(closest-side, #121212 80%, transparent 0 99.9%, #333 0),
-      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--bg) 0);
+      radial-gradient(closest-side, var(--background-color) 80%, transparent 0 99.9%, var(--button-background) 0),
+      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--button-background) 0);
       font-family: 'Noto Sans', sans-serif;
     font-size: calc(var(--size) / 8);
     color: var(--fg);
@@ -448,10 +477,6 @@ div[role="temp-gauge-f"]::before {
     font-weight: 700;
     content: '°F ' attr(aria-valuenow);
 }
-
-
-
-
 
 
 div[role="mini-temp-gauge-f"] {
@@ -465,8 +490,8 @@ div[role="mini-temp-gauge-f"] {
     display: grid;
     place-items: center;
     background: 
-      radial-gradient(closest-side, #121212 80%, transparent 0 99.9%, #333 0),
-      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--bg) 0);
+      radial-gradient(closest-side, var(--background-color) 80%, transparent 0 99.9%, var(--button-background) 0),
+      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--button-background) 0);
       font-family: 'Noto Sans', sans-serif;
     font-size: calc(var(--size) / 6);
     color: var(--fg);
@@ -494,8 +519,8 @@ div[role="temp-gauge-c"] {
     display: grid;
     place-items: center;
     background: 
-      radial-gradient(closest-side, #121212 80%, transparent 0 99.9%, #333 0),
-      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--bg) 0);
+      radial-gradient(closest-side, var(--background-color) 80%, transparent 0 99.9%, var(--button-background) 0),
+      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--button-background) 0);
       font-family: 'Noto Sans', sans-serif;
     font-size: calc(var(--size) / 8);
     color: var(--fg);
@@ -506,7 +531,6 @@ div[role="temp-gauge-c"]::before {
     font-weight: 700;
     content: '°C ' attr(aria-valuenow);
 }
-
 
 
 div[role="mini-temp-gauge-c"] {
@@ -520,8 +544,8 @@ div[role="mini-temp-gauge-c"] {
     display: grid;
     place-items: center;
     background: 
-      radial-gradient(closest-side, #121212 80%, transparent 0 99.9%, #333 0),
-      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--bg) 0);
+      radial-gradient(closest-side, var(--background-color) 80%, transparent 0 99.9%, var(--button-background) 0),
+      conic-gradient(var(--fg) calc(var(--tempPercentage) * 1%), var(--button-background) 0);
       font-family: 'Noto Sans', sans-serif;
     font-size: calc(var(--size) / 6);
     color: var(--fg);
@@ -531,4 +555,52 @@ div[role="mini-temp-gauge-c"] {
 div[role="mini-temp-gauge-c"]::before {
     font-weight: 700;
     content: '°C ' attr(aria-valuenow);
+}
+
+
+/* Dashboard Options */
+
+.dashboard-filter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: #333; */
+    padding: 10px;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.dashboard-filter-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.dashboard-filter-icons button {
+    background: var(--button-background);
+    color: var(--button-text);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.dashboard-filter-sensor-count {
+    text-align: center;
+    flex-grow: 1; 
+}
+
+.dashboard-filter-mode-toggle button {
+    background: var(--button-background);
+    color: var(--button-text);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.dashboard-filter-mode-toggle button:hover, .dashboard-filter-icons button:hover {
+    background: var(--background-color-2);
 }

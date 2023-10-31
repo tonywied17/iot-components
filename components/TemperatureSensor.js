@@ -12,42 +12,72 @@
  * @param {*} data 
  * @returns 
  */
-function renderTemperatureSensorF(data) {
+function renderTemperatureSensorF(data, view) {
     const card = document.createElement('div');
-    card.className = 'card temperature-card';
+    
 
     let cardClass = "normal";
-
+    // Sensor alarm and warn logic
     if ((data.unit === "F" && data.current >= 80) || (data.unit === "C" && data.current >= 26.66)) {
         cardClass = "high";
     } else if ((data.unit === "F" && data.current >= 70) || (data.unit === "C" && data.current >= 21.11)) {
         cardClass = "medium";
     }
 
-    card.innerHTML = `
-    <div class="sensor-content">
-        <div class="header">
-            <h3>${g_icons.temperature +data.name}</h3>
-        </div>
-        <span style="display:none;" id="unit-${data.name}">${data.unit}</span>
+    // List Mode View for F unit
+    if (view === 'list') {
+
+        card.className = 'card-list temperature-card';
+
+        card.innerHTML = `
+        <div class="sensor-content">
+            <div class="header">
+                <h3>${data.name}</h3>
+            </div>
         <div class="temperatures">
             <div class="left-column">
-                <span class="temp-label">Current</span>
-                <div role="temp-gauge-f" aria-valuenow="${data.current.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.current.toFixed(2)};--fg:${getTemperatureColor(data.current, data.unit)};"></div>
-            </div>    
+                <p>${data.current.toFixed(2)} °${data.unit}</p>
+            </div>
+
             <div class="right-column">
-                <p style="color: ${getTemperatureColor(data.min, data.unit)};">
-                    <span class="temp-label">Minimum</span>
-                    <div role="mini-temp-gauge-f" aria-valuenow="${data.min.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.min.toFixed(2)};--fg:${getTemperatureColor(data.min, data.unit)};"></div>    
-                </p>
-                <p style="color: ${getTemperatureColor(data.max, data.unit)};">
-                <span class="temp-label">Maximum</span>
-                <div role="mini-temp-gauge-f" aria-valuenow="${data.max.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.max.toFixed(2)};--fg:${getTemperatureColor(data.max, data.unit)};"></div>
-                </p>
+                <p>${data.min.toFixed(2)} °${data.unit}</p>
+                <p>${data.max.toFixed(2)} °${data.unit}</p>
             </div>
         </div>
-    </div>
-`;
+            </div>
+    `;
+
+    
+    } else {
+    // Grid Mode View for F unit
+        card.className = 'card temperature-card';
+
+        card.innerHTML = `
+        <div class="sensor-content">
+            <div class="header">
+                <h3>${g_icons.temperature +data.name}</h3>
+            </div>
+            <span style="display:none;" id="unit-${data.name}">${data.unit}</span>
+            <div class="temperatures">
+                <div class="left-column">
+                    <span class="temp-label">Current</span>
+                    <div role="temp-gauge-f" aria-valuenow="${data.current.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.current.toFixed(2)};--fg:${getTemperatureColor(data.current, data.unit)};"></div>
+                </div>    
+                <div class="right-column">
+                    <p style="color: ${getTemperatureColor(data.min, data.unit)};">
+                        <span class="temp-label">Minimum</span>
+                        <div role="mini-temp-gauge-f" aria-valuenow="${data.min.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.min.toFixed(2)};--fg:${getTemperatureColor(data.min, data.unit)};"></div>    
+                    </p>
+                    <p style="color: ${getTemperatureColor(data.max, data.unit)};">
+                    <span class="temp-label">Maximum</span>
+                    <div role="mini-temp-gauge-f" aria-valuenow="${data.max.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.max.toFixed(2)};--fg:${getTemperatureColor(data.max, data.unit)};"></div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+    }
+    
 
     card.classList.add(cardClass);
 
@@ -59,9 +89,9 @@ function renderTemperatureSensorF(data) {
  * @param {*} data 
  * @returns 
  */
-function renderTemperatureSensorC(data) {
+function renderTemperatureSensorC(data, view) {
     const card = document.createElement('div');
-    card.className = 'card temperature-card';
+    
 
     let cardClass = "normal";
 
@@ -71,31 +101,58 @@ function renderTemperatureSensorC(data) {
         cardClass = "medium";
     }
 
+    // List Mode View for F unit
+    if(view == 'list') {
 
-    card.innerHTML = `
-    <div class="sensor-content">
-        <div class="header">
-            <h3>${g_icons.temperature +data.name}</h3>
-        </div>
-        <span style="display:none;" id="unit-${data.name}">${data.unit}</span>
+        card.className = 'card-list temperature-card';
+
+        card.innerHTML = `
+        <div class="sensor-content">
+            <div class="header">
+                <h3>${data.name}</h3>
+            </div>
         <div class="temperatures">
             <div class="left-column">
-                <span class="temp-label">Current</span>
-                <div role="temp-gauge-c" aria-valuenow="${data.current.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${convertToFahrenheit(data.current).toFixed(2)};--fg:${getTemperatureColor(data.current, data.unit)};"></div>
-            </div>      
+                <p>${data.current.toFixed(2)} °${data.unit}</p>
+            </div>
+
             <div class="right-column">
-                <p style="color: ${getTemperatureColor(data.min, data.unit)};">
-                    <span class="temp-label">Minimum</span>
-                    <div role="mini-temp-gauge-c" aria-valuenow="${data.min.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${convertToFahrenheit(data.min).toFixed(2)};--fg:${getTemperatureColor(data.min, data.unit)};"></div>    
-                </p>
-                <p style="color: ${getTemperatureColor(data.max, data.unit)};">
-                <span class="temp-label">Maximum</span>
-                <div role="mini-temp-gauge-c" aria-valuenow="${data.max.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${convertToFahrenheit(data.max).toFixed(2)};--fg:${getTemperatureColor(data.max, data.unit)};"></div>
-                </p>
+                <p>${data.min.toFixed(2)} °${data.unit}</p>
+                <p>${data.max.toFixed(2)} °${data.unit}</p>
             </div>
         </div>
-    </div>
-`;
+            </div>
+    `;
+
+    } else {
+    // Grid Mode View for F unit
+        card.className = 'card temperature-card';
+
+        card.innerHTML = `
+        <div class="sensor-content">
+            <div class="header">
+                <h3>${g_icons.temperature +data.name}</h3>
+            </div>
+            <span style="display:none;" id="unit-${data.name}">${data.unit}</span>
+            <div class="temperatures">
+                <div class="left-column">
+                    <span class="temp-label">Current</span>
+                    <div role="temp-gauge-c" aria-valuenow="${data.current.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${convertToFahrenheit(data.current).toFixed(2)};--fg:${getTemperatureColor(data.current, data.unit)};"></div>
+                </div>      
+                <div class="right-column">
+                    <p style="color: ${getTemperatureColor(data.min, data.unit)};">
+                        <span class="temp-label">Minimum</span>
+                        <div role="mini-temp-gauge-c" aria-valuenow="${data.min.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${convertToFahrenheit(data.min).toFixed(2)};--fg:${getTemperatureColor(data.min, data.unit)};"></div>    
+                    </p>
+                    <p style="color: ${getTemperatureColor(data.max, data.unit)};">
+                    <span class="temp-label">Maximum</span>
+                    <div role="mini-temp-gauge-c" aria-valuenow="${data.max.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${convertToFahrenheit(data.max).toFixed(2)};--fg:${getTemperatureColor(data.max, data.unit)};"></div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+    }
 
     card.classList.add(cardClass);
 

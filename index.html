@@ -15,7 +15,25 @@
             <li><a id="settings-link" href="#"><i class="fa-solid fa-gear nav-icon"></i>Settings</a></li>
         </ul>
     </nav>
-    <h2 id="sensor-count"></h2>
+
+    <div id="dashboard-filter-container" class="dashboard-filter-container">
+        <!-- Make Icon Buttons Aligned Left Div -->
+        <div class="dashboard-filter-icons">
+            <button id="view-toggle">List View</button>
+        </div>
+
+        <!-- Sensor Count should be centered -->
+        <div class="dashboard-filter-sensor-count">
+            <h2 id="sensor-count"></h2>
+        </div>
+        
+        <!-- Dark/Light Mode Toggle Buttons -->
+        <div class="dashboard-filter-mode-toggle">
+            <button id="mode-toggle">Dark Mode</button>
+        </div>
+    </div>
+    
+
     <div class="container" id="sensor-container"></div>
     <div class="settings" id="settings-overlay">
         <div class="settings-overlay-arrow"></div>
