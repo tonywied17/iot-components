@@ -281,9 +281,9 @@ body {
 }
 
 .btn-icon {
-    font-size: 12px !important;
-    margin: unset !important;
-    margin-right: 5px !important;
+    vertical-align: middle;
+    font-size: 16px !important;
+    padding-right: 5px !important;
 }
 
 .delete-btn {
@@ -437,9 +437,14 @@ select {
     .settings {
         width: 95vw;
         padding: 0.15em;
+        max-height: 90vh; 
     }
     .sensor-data-label{
         font-size: 1rem !important;
+    }
+    .sensor-setting-list{
+        margin: 0;
+        max-height: calc(90vh - 70px); 
     }
 }
 

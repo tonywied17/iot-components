@@ -88,6 +88,8 @@ var g_icons = {
     light_mode: `<span class="material-symbols-outlined">light_mode</span>`,
     list_view: `<span class="material-symbols-outlined">view_list</span>`,
     grid_view: `<span class="material-symbols-outlined">grid_view</span>`,
+    save: `<span class="material-symbols-outlined">save</span>`,
+    remove: `<span class="material-symbols-outlined">delete</span>`
 };
 
 /**
@@ -195,8 +197,8 @@ function renderSensorSetting(sensor) {
         </div>
         ${renderAdditionalOptions(sensor, sensor.name)}
         <div class="option">
-            <button class="delete-btn" onclick="deleteSensor('${sensor.name}')"><i class="fa-solid fa-x btn-icon"></i>Delete</button>
-            <button onclick="saveSensor('${sensor.name}')"><i class="fa-regular fa-floppy-disk btn-icon"></i>Save</button>
+            <button class="delete-btn" onclick="deleteSensor('${sensor.name}')">${g_icons.remove}</button>
+            <button onclick="saveSensor('${sensor.name}')">${g_icons.save}</button>  
         </div>
     `;
     return sensorDiv;
