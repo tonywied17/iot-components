@@ -32,7 +32,7 @@ function renderTemperatureSensorF(data, view) {
         card.innerHTML = `
         <div class="sensor-content">
             <div class="header">
-                <h3>${data.name}</h3>
+                <h3>${g_icons.temperature + data.name}</h3>
             </div>
             <div class="temperatures-list">
                 <div class="left-column">
@@ -113,7 +113,7 @@ function renderTemperatureSensorC(data, view) {
         card.innerHTML = `
         <div class="sensor-content">
             <div class="header">
-                <h3>${data.name}</h3>
+                <h3>${g_icons.temperature + data.name}</h3>
             </div>
             <div class="temperatures-list">
                 <div class="left-column">

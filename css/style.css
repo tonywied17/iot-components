@@ -36,6 +36,11 @@
     outline: none;
 }
 
+.material-symbols-outlined{
+    vertical-align: middle;
+    
+}
+
 body {
     font-family: 'Noto Sans', sans-serif;
     margin: 0;
@@ -172,7 +177,8 @@ body {
 }
 
 .nav-icon {
-    margin-right: 8px;
+    font-size: 19px !important;
+    padding-right: 5px;
 }
 
 .card {

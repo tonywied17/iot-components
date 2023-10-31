@@ -78,9 +78,16 @@ const sensors = [
 
 // Global Icons for Sensor Types
 var g_icons = {
-    switch: `<i class="fa-regular fa-lightbulb"></i>`,
-    counter: `<i class="fa-solid fa-people-group"></i>`,
-    temperature: `<i class="fa-solid fa-temperature-quarter"></i>`
+    switch: `<span class="material-symbols-outlined nav-icon">switches</span>`,
+    counter: `<span class="material-symbols-outlined nav-icon">groups_2</span>`,
+    temperature: `<span class="material-symbols-outlined nav-icon">device_thermostat</span>`,
+    dash: `<span class="material-symbols-outlined nav-icon">speed</span>`,
+    groups: `<span class="material-symbols-outlined nav-icon">workspaces</span>`,
+    settings: `<span class="material-symbols-outlined nav-icon">settings</span>`,
+    dark_mode: `<span class="material-symbols-outlined">dark_mode</span>`,
+    light_mode: `<span class="material-symbols-outlined">light_mode</span>`,
+    list_view: `<span class="material-symbols-outlined">view_list</span>`,
+    grid_view: `<span class="material-symbols-outlined">grid_view</span>`,
 };
 
 /**
@@ -347,9 +354,9 @@ let isListView = false;
 Id('view-toggle').addEventListener('click', function () {
     isListView = !isListView;
     if (!isListView) {
-        Id('view-toggle').textContent = 'List View';
+        Id('view-toggle').innerHTML = g_icons.list_view;
     } else {
-        Id('view-toggle').textContent = 'Grid View';
+        Id('view-toggle').innerHTML = g_icons.grid_view;
     }
     initSensorCards(isListView ? 'list' : 'grid');
 });
@@ -365,10 +372,10 @@ modeToggle.addEventListener('click', function () {
 
     if (isDarkMode) {
         document.documentElement.setAttribute('data-theme', 'night');
-        modeToggle.textContent = 'Light Mode'
+        modeToggle.innerHTML = g_icons.light_mode;
     } else {
         document.documentElement.setAttribute('data-theme', 'light');
-        modeToggle.textContent = 'Dark Mode'
+        modeToggle.innerHTML = g_icons.dark_mode;
     }
 });
 
