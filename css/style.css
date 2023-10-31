@@ -133,12 +133,18 @@ body {
     height: 100%;
 }
 
-.temperatures {
+.temperatures, .switch-list, .counter-list, .temperatures-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     padding: 5px;
+}
+
+.switch-list, .counter-list, .temperatures-list {
+    margin: auto;
+    margin: 22px 0;
+    max-height: 31px;
 }
 
 .left-column,
@@ -154,7 +160,7 @@ body {
     margin-bottom: 5px;
 }
 
-.left-column .temp-label {
+.left-column .sensor-data-label {
     margin-bottom: 5px;
 }
 
@@ -221,6 +227,10 @@ body {
     align-items: center;
     flex-grow: 1; 
     padding: 0;
+}
+
+.counter-peak {
+    color: var(--text-color-2) !important;
 }
 
 .unit-toggle {
@@ -422,7 +432,7 @@ select {
         width: 95vw;
         padding: 0.15em;
     }
-    .temp-label{
+    .sensor-data-label{
         font-size: 1rem !important;
     }
 }
@@ -433,11 +443,18 @@ select {
     
 */
 
-.temp-label{
+.sensor-data-label{
     display:block;
     font-weight:200;
     font-size:0.81rem;
     color: var(--text-color-2);
+}
+
+.sensor-data-label-list {
+    font-weight:200;
+    font-size:0.81rem;
+    color: var(--text-color-2);
+    padding-right: 5px;
 }
 
 @keyframes growProgressBar {

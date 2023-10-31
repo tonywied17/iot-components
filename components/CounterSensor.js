@@ -1,7 +1,5 @@
-function renderCounterSensor(data) {
+function renderCounterSensor(data, view) {
     const card = document.createElement('div');
-    card.className = 'card counter-card';
-
     const percentage = (data.current / data.limit) * 100;
     let cardClass = "normal";
 
@@ -11,20 +9,47 @@ function renderCounterSensor(data) {
         cardClass = "medium";
     }
 
-    card.innerHTML = `
-    <div class="sensor-content">
-        <div class="header">
-            <h3>${g_icons.counter + data.name}</h3>
-        </div>
-        <div class="counter">
-            <span class="temp-label">Current</span>
-            <span style="font-size:3rem;display:block;margin-top:-5px;">${data.current} <sup style="font-size:1rem;">/ ${data.limit}</sup></span>
 
-            <span style="display:block;margin-top:1em;" class="temp-label">Peak</span>
-            <span style="color: rgb(229 229 229) !important;">${data.max}</span>
+    if (view == "list") {
+        card.className = 'card-list counter-card';
+
+        card.innerHTML = `
+        <div class="sensor-content">
+            <div class="header">
+                <h3>${g_icons.counter + data.name}</h3>
+            </div>
+            <div class="counter-list">
+            <div class="left-column">
+                <span class="sensor-data-label-list">Current</span>
+                <span style="font-size:1.1rem;">${data.current} <sup style="font-size:0.7rem;">/ ${data.limit}</sup></span>
+            </div>
+            <div class="right-column">
+                <span class="sensor-data-label-list">Peak</span>
+                <span class='counter-peak'>${data.max}</span>
+            </div>
+            </div>
         </div>
-    </div>
-    `;
+        `;
+    } else {
+        card.className = 'card counter-card';
+
+        card.innerHTML = `
+        <div class="sensor-content">
+            <div class="header">
+                <h3>${g_icons.counter + data.name}</h3>
+            </div>
+            <div class="counter">
+                <span class="sensor-data-label">Current</span>
+                <span style="font-size:3rem;display:block;margin-top:-5px;">${data.current} <sup style="font-size:1rem;">/ ${data.limit}</sup></span>
+    
+                <span style="display:block;margin-top:1em;" class="sensor-data-label">Peak</span>
+                <span class='counter-peak'>${data.max}</span>
+            </div>
+        </div>
+        `;
+    }
+
+    
 
     card.classList.add(cardClass);
 

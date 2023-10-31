@@ -14,7 +14,7 @@
  */
 function renderTemperatureSensorF(data, view) {
     const card = document.createElement('div');
-    
+
 
     let cardClass = "normal";
     // Sensor alarm and warn logic
@@ -34,42 +34,46 @@ function renderTemperatureSensorF(data, view) {
             <div class="header">
                 <h3>${data.name}</h3>
             </div>
-        <div class="temperatures">
-            <div class="left-column">
-                <p>${data.current.toFixed(2)} °${data.unit}</p>
-            </div>
+            <div class="temperatures-list">
+                <div class="left-column">
+                    <span class="sensor-data-label-list">Current</span>
+                    <span style="color: ${getTemperatureColor(data.current, data.unit)};">${data.current.toFixed(2)} °${data.unit}</span>
+                </div>
 
-            <div class="right-column">
-                <p>${data.min.toFixed(2)} °${data.unit}</p>
-                <p>${data.max.toFixed(2)} °${data.unit}</p>
+                <div class="right-column">
+                    <span class="sensor-data-label-list">Min</span>
+                    <span style="color: ${getTemperatureColor(data.min, data.unit)};">${data.min.toFixed(2)} °${data.unit}</span>
+                        <br />
+                    <span class="sensor-data-label-list">Max</span>
+                    <span style="color: ${getTemperatureColor(data.max, data.unit)};">${data.max.toFixed(2)} °${data.unit}</span>
+                </div>
             </div>
         </div>
-            </div>
     `;
 
-    
+
     } else {
-    // Grid Mode View for F unit
+        // Grid Mode View for F unit
         card.className = 'card temperature-card';
 
         card.innerHTML = `
         <div class="sensor-content">
             <div class="header">
-                <h3>${g_icons.temperature +data.name}</h3>
+                <h3>${g_icons.temperature + data.name}</h3>
             </div>
             <span style="display:none;" id="unit-${data.name}">${data.unit}</span>
             <div class="temperatures">
                 <div class="left-column">
-                    <span class="temp-label">Current</span>
+                    <span class="sensor-data-label">Current</span>
                     <div role="temp-gauge-f" aria-valuenow="${data.current.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.current.toFixed(2)};--fg:${getTemperatureColor(data.current, data.unit)};"></div>
                 </div>    
                 <div class="right-column">
                     <p style="color: ${getTemperatureColor(data.min, data.unit)};">
-                        <span class="temp-label">Minimum</span>
+                        <span class="sensor-data-label">Minimum</span>
                         <div role="mini-temp-gauge-f" aria-valuenow="${data.min.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.min.toFixed(2)};--fg:${getTemperatureColor(data.min, data.unit)};"></div>    
                     </p>
                     <p style="color: ${getTemperatureColor(data.max, data.unit)};">
-                    <span class="temp-label">Maximum</span>
+                    <span class="sensor-data-label">Maximum</span>
                     <div role="mini-temp-gauge-f" aria-valuenow="${data.max.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${data.max.toFixed(2)};--fg:${getTemperatureColor(data.max, data.unit)};"></div>
                     </p>
                 </div>
@@ -77,7 +81,7 @@ function renderTemperatureSensorF(data, view) {
         </div>
     `;
     }
-    
+
 
     card.classList.add(cardClass);
 
@@ -91,7 +95,7 @@ function renderTemperatureSensorF(data, view) {
  */
 function renderTemperatureSensorC(data, view) {
     const card = document.createElement('div');
-    
+
 
     let cardClass = "normal";
 
@@ -102,7 +106,7 @@ function renderTemperatureSensorC(data, view) {
     }
 
     // List Mode View for F unit
-    if(view == 'list') {
+    if (view == 'list') {
 
         card.className = 'card-list temperature-card';
 
@@ -111,41 +115,45 @@ function renderTemperatureSensorC(data, view) {
             <div class="header">
                 <h3>${data.name}</h3>
             </div>
-        <div class="temperatures">
-            <div class="left-column">
-                <p>${data.current.toFixed(2)} °${data.unit}</p>
-            </div>
+            <div class="temperatures-list">
+                <div class="left-column">
+                    <span class="sensor-data-label-list">Current</span>
+                    <span style="color: ${getTemperatureColor(data.current, data.unit)};">${data.current.toFixed(2)} °${data.unit}</span>
+                </div>
 
-            <div class="right-column">
-                <p>${data.min.toFixed(2)} °${data.unit}</p>
-                <p>${data.max.toFixed(2)} °${data.unit}</p>
+                <div class="right-column">
+                    <span class="sensor-data-label-list">Min</span>
+                    <span style="color: ${getTemperatureColor(data.min, data.unit)};">${data.min.toFixed(2)} °${data.unit}</span>
+                        <br />
+                    <span class="sensor-data-label-list">Max</span>
+                    <span style="color: ${getTemperatureColor(data.max, data.unit)};">${data.max.toFixed(2)} °${data.unit}</span>
+                </div>
             </div>
         </div>
-            </div>
     `;
 
     } else {
-    // Grid Mode View for F unit
+        // Grid Mode View for F unit
         card.className = 'card temperature-card';
 
         card.innerHTML = `
         <div class="sensor-content">
             <div class="header">
-                <h3>${g_icons.temperature +data.name}</h3>
+                <h3>${g_icons.temperature + data.name}</h3>
             </div>
             <span style="display:none;" id="unit-${data.name}">${data.unit}</span>
             <div class="temperatures">
                 <div class="left-column">
-                    <span class="temp-label">Current</span>
+                    <span class="sensor-data-label">Current</span>
                     <div role="temp-gauge-c" aria-valuenow="${data.current.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${convertToFahrenheit(data.current).toFixed(2)};--fg:${getTemperatureColor(data.current, data.unit)};"></div>
                 </div>      
                 <div class="right-column">
                     <p style="color: ${getTemperatureColor(data.min, data.unit)};">
-                        <span class="temp-label">Minimum</span>
+                        <span class="sensor-data-label">Minimum</span>
                         <div role="mini-temp-gauge-c" aria-valuenow="${data.min.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${convertToFahrenheit(data.min).toFixed(2)};--fg:${getTemperatureColor(data.min, data.unit)};"></div>    
                     </p>
                     <p style="color: ${getTemperatureColor(data.max, data.unit)};">
-                    <span class="temp-label">Maximum</span>
+                    <span class="sensor-data-label">Maximum</span>
                     <div role="mini-temp-gauge-c" aria-valuenow="${data.max.toFixed(2)}" aria-valuemin="0" aria-valuemax="100" style="--value:${convertToFahrenheit(data.max).toFixed(2)};--fg:${getTemperatureColor(data.max, data.unit)};"></div>
                     </p>
                 </div>
@@ -161,11 +169,11 @@ function renderTemperatureSensorC(data, view) {
 
 
 function convertToFahrenheit(celsius) {
-    return (celsius * 9/5) + 32;
+    return (celsius * 9 / 5) + 32;
 }
 
 function convertToCelsius(fahrenheit) {
-    return (fahrenheit - 32) * 5/9;
+    return (fahrenheit - 32) * 5 / 9;
 }
 
 /**
