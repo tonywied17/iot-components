@@ -1,16 +1,3 @@
-/*
- * File: c:\Users\tonyw\Desktop\www\local\git\iot-components\components\CounterSensor.js
- * Project: c:\Users\tonyw\Desktop\www\local\git\iot-components\components
- * Created Date: Friday October 27th 2023
- * Author: Tony Wiedman
- * -----
- * Last Modified: Wed November 1st 2023 12:44:36 
- * Modified By: Tony Wiedman
- * -----
- * Copyright (c) 2023 MolexWorks / Tone Web Design
- */
-
-
 /**
  * Counter Sensor
  * @param {*} data - sensor data 
@@ -19,19 +6,12 @@
  */
 function renderCounterSensor(data, view) {
     const card = document.createElement('div');
-    const percentage = (data.current / data.limit) * 100;
-    let cardClass = "normal";
 
-    if (data.current == (data.limit - 1)) {
-        cardClass = "high";
-    } else if (percentage >= 50) {
-        cardClass = "medium";
-    }
-
-
-    if (view == "list") {
+    if (view == "list") { 
+        
+        // ! List View Card
+        
         card.className = 'card-list counter-card';
-
         card.innerHTML = `
         <div class="sensor-content">
             <div class="header">
@@ -49,9 +29,12 @@ function renderCounterSensor(data, view) {
             </div>
         </div>
         `;
-    } else {
-        card.className = 'card counter-card';
 
+    } else {     
+        
+        // ! Grid View Card
+        
+        card.className = 'card counter-card';
         card.innerHTML = `
         <div class="sensor-content">
             <div class="header">
@@ -66,11 +49,10 @@ function renderCounterSensor(data, view) {
             </div>
         </div>
         `;
+        
     }
-
     
-
-    card.classList.add(cardClass);
+    card.classList.add(counterCardClass(data));
 
     return card;
 }

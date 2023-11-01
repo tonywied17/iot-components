@@ -1,15 +1,3 @@
-/*
- * File: c:\Users\tonyw\Desktop\www\local\git\iot-components\components\SwitchSensor.js
- * Project: c:\Users\tonyw\Desktop\www\local\git\iot-components\components
- * Created Date: Friday October 27th 2023
- * Author: Tony Wiedman
- * -----
- * Last Modified: Wed November 1st 2023 12:44:08 
- * Modified By: Tony Wiedman
- * -----
- * Copyright (c) 2023 MolexWorks / Tone Web Design
- */
-
 /**
  * Switch Sensor
  * @param {*} data - sensor data 
@@ -20,8 +8,10 @@ function renderSwitchSensor(data, view) {
   const card = document.createElement("div");
 
   if (view == "list") {
-    card.className = `card-list switch-card ${data.value ? "on" : "off"}`;
 
+    // ! List View Card
+
+    card.className = `card-list switch-card ${data.value ? "on" : "off"}`;
     card.innerHTML = `
         <div class="sensor-content">
             <div class="header">
@@ -39,9 +29,12 @@ function renderSwitchSensor(data, view) {
         
         <div>
         `;
-  } else {
-    card.className = `card switch-card ${data.value ? "on" : "off"}`;
 
+  } else {
+
+    // ! Grid View Card
+
+    card.className = `card switch-card ${data.value ? "on" : "off"}`;
     card.innerHTML = `
         <div class="sensor-content">
             <div class="header">
@@ -56,6 +49,7 @@ function renderSwitchSensor(data, view) {
             </div>
         <div>
         `;
+
   }
 
   return card;

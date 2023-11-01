@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preload" as="font">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <title>IOT Sensor Dashboard</title>
 </head>
@@ -47,17 +48,19 @@
     <!-- 
         ? Sensor Components JS
      -->
-    <script src="components/TemperatureSensor.js"></script>
-    <script src="components/SwitchSensor.js"></script>
-    <script src="components/CounterSensor.js"></script>
+    <script src="js/components/helpers.js"></script>
+    <script src="js/components/TemperatureSensor/GridSensor.js"></script>
+    <script src="js/components/TemperatureSensor/ListSensor.js"></script>
+    <script src="js/components/SwitchSensor/SwitchSensor.js"></script>
+    <script src="js/components/CounterSensor/CounterSensor.js"></script>
     <!-- 
         ? Client JS Libraries
      -->
-    <script src="js/dom.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/prefixfree.min.js"></script>
+    <script src="js/frameworks/dom.js"></script>
+    <script src="js/libraries/storage.js"></script>
+    <script src="js/libraries/ui.js"></script>
+    <script src="js/libraries/settings.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/frameworks/prefixfree.min.js"></script>
 </body>
 </html>

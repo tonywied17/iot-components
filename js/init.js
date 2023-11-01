@@ -4,7 +4,7 @@
  * Created Date: Friday October 27th 2023
  * Author: Tony Wiedman
  * -----
- * Last Modified: Wed November 1st 2023 12:31:06 
+ * Last Modified: Wed November 1st 2023 1:17:51 
  * Modified By: Tony Wiedman
  * -----
  * Copyright (c) 2023 MolexWorks / Tone Web Design
@@ -28,9 +28,9 @@ function initSensorCards(view) {
             switch (sensor.type) {
                 case "temperature":
                     if (sensor.unit == 'F') {
-                        sensorComponent = renderTemperatureSensorF(sensor, view);
+                        sensorComponent = renderTemperatureListSensorF(sensor);
                     } else {
-                        sensorComponent = renderTemperatureSensorC(sensor, view);
+                        sensorComponent = renderTemperatureListSensorC(sensor);
                     }
 
                     break;
@@ -49,9 +49,9 @@ function initSensorCards(view) {
             switch (sensor.type) {
                 case "temperature":
                     if (sensor.unit == 'F') {
-                        sensorComponent = renderTemperatureSensorF(sensor);
+                        sensorComponent = renderTemperatureGridSensorF(sensor);
                     } else {
-                        sensorComponent = renderTemperatureSensorC(sensor);
+                        sensorComponent = renderTemperatureGridSensorC(sensor);
                     }
 
                     break;
