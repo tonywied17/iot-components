@@ -1,15 +1,20 @@
-/* <p style="color: ${temperatureColor}; font-size: 1.5rem;">
-<span id="temp-${data.name}">${data.current.toFixed(2)} °${data.unit}</span>
-</p> 
+/*
+ * File: c:\Users\tonyw\Desktop\www\local\git\iot-components\components\TemperatureSensor.js
+ * Project: c:\Users\tonyw\Desktop\www\local\git\iot-components\components
+ * Created Date: Friday October 27th 2023
+ * Author: Tony Wiedman
+ * -----
+ * Last Modified: Wed November 1st 2023 12:45:16 
+ * Modified By: Tony Wiedman
+ * -----
+ * Copyright (c) 2023 MolexWorks / Tone Web Design
+ */
 
-
-<span id="temp-min-${data.name}">${data.min.toFixed(2)} °${data.unit}</span>
-
-*/
 
 /**
  * Fahrenheit Sensor
- * @param {*} data 
+ * @param {*} data - sensor data
+ * @param {*} view - ui view/card mode (list, grid)
  * @returns 
  */
 function renderTemperatureSensorF(data, view) {
@@ -17,14 +22,14 @@ function renderTemperatureSensorF(data, view) {
 
 
     let cardClass = "normal";
-    // Sensor alarm and warn logic
+    // ! Sensor alarm and warn logic, similiar to getTemperatureColor()
     if ((data.unit === "F" && data.current >= 80) || (data.unit === "C" && data.current >= 26.66)) {
         cardClass = "high";
     } else if ((data.unit === "F" && data.current >= 70) || (data.unit === "C" && data.current >= 21.11)) {
         cardClass = "medium";
     }
 
-    // List Mode View for F unit
+    // ! List Mode View for F unit
     if (view === 'list') {
 
         card.className = 'card-list temperature-card';
@@ -53,7 +58,7 @@ function renderTemperatureSensorF(data, view) {
 
 
     } else {
-        // Grid Mode View for F unit
+        // ! Grid Mode View for F unit
         card.className = 'card temperature-card';
 
         card.innerHTML = `
@@ -105,7 +110,7 @@ function renderTemperatureSensorC(data, view) {
         cardClass = "medium";
     }
 
-    // List Mode View for F unit
+    // ! List Mode View for C unit
     if (view == 'list') {
 
         card.className = 'card-list temperature-card';
@@ -133,7 +138,7 @@ function renderTemperatureSensorC(data, view) {
     `;
 
     } else {
-        // Grid Mode View for F unit
+        // ! Grid Mode View for C unit
         card.className = 'card temperature-card';
 
         card.innerHTML = `

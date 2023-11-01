@@ -4,7 +4,7 @@
  * Created Date: Wednesday November 1st 2023
  * Author: Tony Wiedman
  * -----
- * Last Modified: Wed November 1st 2023 12:39:31 
+ * Last Modified: Wed November 1st 2023 12:41:24 
  * Modified By: Tony Wiedman
  * -----
  * Copyright (c) 2023 MolexWorks / Tone Web Design
@@ -47,7 +47,7 @@ closeOverlay('settings-overlay', Id("settings-link"));
 Id('mode-toggle').addEventListener('click', function () {
     isDarkMode = !isDarkMode;
     saveUserSettings();
-    
+
     if (isDarkMode) {
         document.documentElement.setAttribute('data-theme', 'night');
         Id('mode-toggle').innerHTML = g_icons.light_mode;
@@ -61,7 +61,7 @@ Id('mode-toggle').addEventListener('click', function () {
 Id('view-toggle').addEventListener('click', function () {
     isListView = !isListView;
     saveUserSettings();
-    
+
     if (!isListView) {
         Id('view-toggle').innerHTML = g_icons.list_view;
     } else {
