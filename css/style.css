@@ -349,9 +349,6 @@ select {
     box-sizing: border-box;
 }
 
-
-
-
 .overlay-header {
     /* background: #333; */
     padding: 5px;
@@ -479,9 +476,13 @@ select {
     initial-value: 0;
 }
 
+/* 
+    ! Temp Ring/Gauge Testing 
+*/
 
-
-
+/*
+    ? Grid View, F Gauge
+*/
 div[role="temp-gauge-f"] {
     --size: 8rem;
     --fg: #333;
@@ -500,13 +501,14 @@ div[role="temp-gauge-f"] {
     color: var(--fg);
     margin: auto;
 }
-
 div[role="temp-gauge-f"]::before {
     font-weight: 700;
     content: '°F ' attr(aria-valuenow);
 }
 
-
+/*
+    ? List View, F Gauge
+*/
 div[role="mini-temp-gauge-f"] {
     --size: 4rem;
     --fg: #333;
@@ -525,17 +527,15 @@ div[role="mini-temp-gauge-f"] {
     color: var(--fg);
     margin: auto;
 }
-
 div[role="mini-temp-gauge-f"]::before {
     font-weight: 700;
     content: '°F ' attr(aria-valuenow);
 }
 
 
-
-
-
-
+/*
+    ? Grid View, C Gauge
+*/
 div[role="temp-gauge-c"] {
     --size: 8rem;
     --fg: #333;
@@ -554,13 +554,14 @@ div[role="temp-gauge-c"] {
     color: var(--fg);
     margin:auto;
 }
-
 div[role="temp-gauge-c"]::before {
     font-weight: 700;
     content: '°C ' attr(aria-valuenow);
 }
 
-
+/*
+    ? List View, C Gauge
+*/
 div[role="mini-temp-gauge-c"] {
     --size: 4rem;
     --fg: #333;
@@ -579,7 +580,6 @@ div[role="mini-temp-gauge-c"] {
     color: var(--fg);
     margin: auto;
 }
-
 div[role="mini-temp-gauge-c"]::before {
     font-weight: 700;
     content: '°C ' attr(aria-valuenow);
@@ -587,7 +587,6 @@ div[role="mini-temp-gauge-c"]::before {
 
 
 /* Dashboard Options */
-
 .dashboard-filter-container {
     display: flex;
     justify-content: space-between;

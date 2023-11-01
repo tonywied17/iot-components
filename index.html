@@ -8,6 +8,9 @@
     <title>IOT Sensor Dashboard</title>
 </head>
 <body>
+    <!-- 
+        ? Client Navigation Bar
+     -->
     <nav class="navbar">
         <ul class="nav-menu">
             <li><a href="#" onclick="location.reload();"><span class="material-symbols-outlined nav-icon">speed</span>Dashboard</a></li>
@@ -15,36 +18,45 @@
             <li><a id="settings-link" href="#"><span class="material-symbols-outlined nav-icon">settings</span>Settings</a></li>
         </ul>
     </nav>
-
+    <!-- 
+        ? Toggles, and sensor counter bar
+     -->
     <div id="dashboard-filter-container" class="dashboard-filter-container">
-        <!-- Make Icon Buttons Aligned Left Div -->
         <div class="dashboard-filter-icons">
             <button id="view-toggle"><span class="material-symbols-outlined">view_list</span></button>
         </div>
-
-        <!-- Sensor Count should be centered -->
         <div class="dashboard-filter-sensor-count">
             <h2 id="sensor-count"></h2>
         </div>
-        
-        <!-- Dark/Light Mode Toggle Buttons -->
         <div class="dashboard-filter-mode-toggle">
             <button id="mode-toggle"><span class="material-symbols-outlined">dark_mode</span></button>
         </div>
     </div>
-    
-
+    <!-- 
+        ? Sensor Card Container
+     -->
     <div class="container" id="sensor-container"></div>
+    <!-- 
+        ? Settings Overlay Panel
+     -->
     <div class="settings" id="settings-overlay">
         <div class="settings-overlay-arrow"></div>
         <div class="overlay-header"><span class="material-symbols-outlined nav-icon">manufacturing</span>Sensor Settings</div>
         <div class="sensor-setting-list" id="sensor-list"></div>
     </div>
-      
-    <script src="js/dom.js"></script>
+    <!-- 
+        ? Sensor Components JS
+     -->
     <script src="components/TemperatureSensor.js"></script>
     <script src="components/SwitchSensor.js"></script>
     <script src="components/CounterSensor.js"></script>
+    <!-- 
+        ? Client JS Libraries
+     -->
+    <script src="js/dom.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/settings.js"></script>
     <script src="js/script.js"></script>
     <script src="js/prefixfree.min.js"></script>
 </body>
